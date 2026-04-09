@@ -5,6 +5,25 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>In gesprek met Ingrid &amp; Mike | De aanstormende toekomst</title>
     <meta name="description" content="Ingrid Straet en Mike Lelieveld gaan in gesprek met de leiders van vandaag over de toekomst van morgen. Een podcast van het Instituut voor Psyche en Economie.">
+
+    <!-- Favicon -->
+    <link rel="icon" type="image/png" href="cover-artwork-final-high-resolution-IGMIM25 Podcast Cover 1920x1920px.png">
+    <link rel="apple-touch-icon" href="cover-artwork-final-high-resolution-IGMIM25 Podcast Cover 1920x1920px.png">
+
+    <!-- Open Graph -->
+    <meta property="og:type" content="website">
+    <meta property="og:title" content="In gesprek met Ingrid &amp; Mike — De aanstormende toekomst">
+    <meta property="og:description" content="Ingrid Straet en Mike Lelieveld gaan in gesprek met de leiders van vandaag over de toekomst van morgen.">
+    <meta property="og:image" content="https://website-podcast-ivpe.web.app/cover-artwork-final-high-resolution-IGMIM25%20Podcast%20Cover%201920x1920px.png">
+    <meta property="og:url" content="https://website-podcast-ivpe.web.app">
+    <meta property="og:locale" content="nl_NL">
+
+    <!-- Twitter / X Card -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="In gesprek met Ingrid &amp; Mike — De aanstormende toekomst">
+    <meta name="twitter:description" content="Ingrid Straet en Mike Lelieveld gaan in gesprek met de leiders van vandaag over de toekomst van morgen.">
+    <meta name="twitter:image" content="https://website-podcast-ivpe.web.app/cover-artwork-final-high-resolution-IGMIM25%20Podcast%20Cover%201920x1920px.png">
+
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@700;800;900&family=Barlow:wght@400;500;600&display=swap" rel="stylesheet">
@@ -155,13 +174,18 @@
         }
 
         .hero-cta--apple::before {
-            background: #fc3c44;
+            background: #b150e2;
         }
 
         .hero-ctas {
             display: flex;
             flex-wrap: wrap;
             gap: 12px;
+            justify-content: center;
+        }
+
+        @media (min-width: 680px) {
+            .hero-ctas { justify-content: flex-start; }
         }
 
         /* ── ABOUT ─────────────────────────────────────────────── */
@@ -300,21 +324,11 @@
             margin-bottom: 18px;
         }
 
-        .ep-hook {
-            font-size: 15px;
-            line-height: 1.62;
-            color: #3a4f6a;
-            font-style: italic;
-            border-left: 3px solid var(--blue);
-            padding-left: 16px;
-            margin-bottom: 24px;
-        }
-
-        .ep-summary {
+        .episodes-loading {
+            color: var(--muted);
             font-size: 14px;
-            line-height: 1.7;
-            color: #5a6d84;
-            margin-bottom: 24px;
+            text-align: center;
+            padding: 32px 0;
         }
 
         /* Spotify embed iframe */
@@ -419,7 +433,7 @@
                     Luister op Spotify
                 </a>
                 <a class="hero-cta hero-cta--apple" href="https://podcasts.apple.com/nl/podcast/in-gesprek-met-ingrid-mike/id1891698681" target="_blank">
-                    Luister op Apple
+                    Luister op Apple Podcasts
                 </a>
             </div>
         </div>
@@ -447,29 +461,9 @@
 <!-- ── AFLEVERINGEN ──────────────────────────────────────────────── -->
 <section class="episodes-section">
     <h2 class="section-heading">Afleveringen</h2>
-
-    <!-- Aflevering 1 – Bjorn Stolte -->
-    <article class="episode-card">
-        <div class="episode-top">
-            <span class="ep-number">Aflevering 01</span>
-            <span class="ep-date">7 april 2026</span>
-        </div>
-        <div class="episode-body">
-            <iframe
-                class="spotify-embed"
-                style="height:232px"
-                src="https://open.spotify.com/embed/show/2tt1Vf232ZTWwzCG7GlekQ?utm_source=generator"
-                allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture"
-                loading="lazy">
-            </iframe>
-        </div>
-    </article>
-
-    <!--
-        Voeg hier nieuwe afleveringen toe door het bovenstaande blok te kopiëren
-        en de gegevens aan te passen.
-    -->
-
+    <div id="episodes-container">
+        <p class="episodes-loading">Afleveringen worden geladen…</p>
+    </div>
 </section>
 
 <!-- ── FOOTER ───────────────────────────────────────────────────── -->
@@ -488,5 +482,76 @@
     <p class="footer-credit">Een productie van het Instituut voor Psyche &amp; Economie</p>
 </footer>
 
+<script>
+(async function () {
+    const FEED    = 'https://anchor.fm/s/10cf41e94/podcast/rss';
+    const SHOW    = 'ivpe';
+    const container = document.getElementById('episodes-container');
+
+    function esc(str) {
+        return String(str)
+            .replace(/&/g, '&amp;').replace(/</g, '&lt;')
+            .replace(/>/g, '&gt;').replace(/"/g, '&quot;');
+    }
+
+    function cleanTitle(raw) {
+        return raw.replace(/\s*[-–]\s*In gesprek met Ingrid\s*&(?:amp;)?\s*Mike\s*$/i, '').trim();
+    }
+
+    function formatDate(str) {
+        return new Date(str).toLocaleDateString('nl-NL', {
+            day: 'numeric', month: 'long', year: 'numeric'
+        });
+    }
+
+    try {
+        const res  = await fetch(FEED);
+        const text = await res.text();
+        const xml  = new DOMParser().parseFromString(text, 'text/xml');
+        const items = [...xml.querySelectorAll('item')];
+
+        if (!items.length) throw new Error('Geen afleveringen');
+
+        container.innerHTML = '';
+
+        items.forEach((item) => {
+            const rawTitle = item.querySelector('title')?.textContent ?? '';
+            const title    = cleanTitle(rawTitle);
+            const pubDate  = item.querySelector('pubDate')?.textContent ?? '';
+            const link     = item.querySelector('link')?.textContent?.trim() ?? '';
+
+            const epEl  = item.getElementsByTagNameNS(
+                'http://www.itunes.com/dtds/podcast-1.0.dtd', 'episode')[0];
+            const epNum = epEl?.textContent ?? '';
+
+            const slug     = link.split('/').pop();
+            const embedSrc = `https://anchor.fm/${SHOW}/embed/episodes/${slug}`;
+
+            container.insertAdjacentHTML('beforeend', `
+                <article class="episode-card">
+                    <div class="episode-top">
+                        <span class="ep-number">${epNum ? 'Aflevering ' + String(epNum).padStart(2, '0') : ''}</span>
+                        <span class="ep-date">${esc(formatDate(pubDate))}</span>
+                    </div>
+                    <div class="episode-body">
+                        <div class="ep-guest">${esc(title)}</div>
+                        <iframe
+                            class="spotify-embed"
+                            style="height:180px"
+                            src="${embedSrc}"
+                            scrolling="no"
+                            allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture"
+                            loading="lazy"
+                            frameborder="0">
+                        </iframe>
+                    </div>
+                </article>`);
+        });
+    } catch (err) {
+        container.innerHTML = '<p class="episodes-loading">Afleveringen konden niet worden geladen.</p>';
+        console.error('RSS fout:', err);
+    }
+})();
+</script>
 </body>
 </html>
