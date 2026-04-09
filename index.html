@@ -154,6 +154,16 @@
             flex-shrink: 0;
         }
 
+        .hero-cta--apple::before {
+            background: #fc3c44;
+        }
+
+        .hero-ctas {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 12px;
+        }
+
         /* ── ABOUT ─────────────────────────────────────────────── */
         .about {
             background: var(--navy);
@@ -401,12 +411,17 @@
                 alt="In gesprek met Ingrid &amp; Mike — Podcast Cover">
         </div>
         <div class="hero-text">
-            <p class="hero-eyebrow">Podcast &nbsp;|&nbsp; Instituut voor Psyche en Economie</p>
+            <p class="hero-eyebrow">Podcast</p>
             <h1 class="hero-title">In gesprek<br>met Ingrid<br>&amp; Mike</h1>
             <p class="hero-subtitle">De aanstormende toekomst</p>
-            <a class="hero-cta" href="https://open.spotify.com/show/2tt1Vf232ZTWwzCG7GlekQ" target="_blank">
-                Luister op Spotify
-            </a>
+            <div class="hero-ctas">
+                <a class="hero-cta" href="https://open.spotify.com/show/2tt1Vf232ZTWwzCG7GlekQ" target="_blank">
+                    Luister op Spotify
+                </a>
+                <a class="hero-cta hero-cta--apple" href="https://podcasts.apple.com/nl/podcast/in-gesprek-met-ingrid-mike/id1891698681" target="_blank">
+                    Luister op Apple
+                </a>
+            </div>
         </div>
     </div>
 </header>
@@ -440,15 +455,6 @@
             <span class="ep-date">7 april 2026</span>
         </div>
         <div class="episode-body">
-            <div class="ep-guest">Bjorn Stolte</div>
-            <div class="ep-role">CEO Handpicked &amp; Voorzitter Dutch Digital Agency</div>
-            <p class="ep-hook">"De advocaat wordt eerder vervangen dan de loodgieter."</p>
-            <p class="ep-summary">Bjorn Stolte denkt als voormalig grafisch ontwerper vanuit creativiteit over complexe vraagstukken. In dit gesprek gaat het over wat leiderschap vraagt als patronen verdwijnen en logica tekortschiet — over AI, continue transitie en waarom empathie juist waardevoller wordt in een chaotische wereld.</p>
-            <!--
-                SPOTIFY EMBED — show-player (toont alle afleveringen automatisch)
-                Wil je een losse aflevering embedden? Vervang 'show/2tt1Vf232ZTWwzCG7GlekQ'
-                door 'episode/EPISODE_ID' (te vinden in de Spotify URL van de aflevering).
-            -->
             <iframe
                 class="spotify-embed"
                 style="height:232px"
@@ -473,9 +479,11 @@
     <nav class="footer-links" aria-label="Luisterplatforms">
         <a href="https://open.spotify.com/show/2tt1Vf232ZTWwzCG7GlekQ" target="_blank">Spotify</a>
         <span class="footer-sep">|</span>
-        <a href="https://podcasts.apple.com" target="_blank">Apple Podcasts</a>
+        <a href="https://podcasts.apple.com/nl/podcast/in-gesprek-met-ingrid-mike/id1891698681" target="_blank">Apple Podcasts</a>
         <span class="footer-sep">|</span>
-        <a href="https://podcast.ivpe.nl" target="_blank">Website</a>
+        <a href="https://ivpe.nl" target="_blank">Website IvPE</a>
+        <span class="footer-sep">|</span>
+        <a href="https://mlelieveld.com" target="_blank">Website @mlelieveld</a>
     </nav>
     <p class="footer-credit">Een productie van het Instituut voor Psyche &amp; Economie</p>
 </footer>
