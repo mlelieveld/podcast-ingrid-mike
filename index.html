@@ -1,0 +1,484 @@
+<!DOCTYPE html>
+<html lang="nl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>In gesprek met Ingrid &amp; Mike | De aanstormende toekomst</title>
+    <meta name="description" content="Ingrid Straet en Mike Lelieveld gaan in gesprek met de leiders van vandaag over de toekomst van morgen. Een podcast van het Instituut voor Psyche en Economie.">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@700;800;900&family=Barlow:wght@400;500;600&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --blue:   #3D7FA3;
+            --blue-dark: #2d6283;
+            --navy:   #141F38;
+            --navy-mid: #1e2f52;
+            --white:  #FFFFFF;
+            --off-white: #F3F7FA;
+            --muted:  #7A90A8;
+            --border: rgba(255,255,255,0.12);
+        }
+
+        *, *::before, *::after {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html { scroll-behavior: smooth; }
+
+        body {
+            font-family: 'Barlow', sans-serif;
+            background: var(--off-white);
+            color: var(--navy);
+            line-height: 1.6;
+        }
+
+        /* ── HERO ─────────────────────────────────────────────── */
+        .hero {
+            background: linear-gradient(160deg, #3D7FA3 0%, #2a5c7a 55%, var(--navy) 100%);
+            padding: 64px 24px 72px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: radial-gradient(ellipse at 80% 50%, rgba(255,255,255,0.04) 0%, transparent 60%);
+            pointer-events: none;
+        }
+
+        .hero-inner {
+            max-width: 900px;
+            margin: 0 auto;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 48px;
+        }
+
+        @media (min-width: 680px) {
+            .hero-inner {
+                flex-direction: row;
+                align-items: center;
+                gap: 64px;
+            }
+        }
+
+        .cover-wrap {
+            flex-shrink: 0;
+            width: 280px;
+            height: 280px;
+            border: 3px solid rgba(255,255,255,0.6);
+            border-radius: 4px;
+            overflow: hidden;
+            box-shadow: 0 24px 64px rgba(0,0,0,0.35);
+        }
+
+        @media (min-width: 680px) {
+            .cover-wrap { width: 300px; height: 300px; }
+        }
+
+        .cover-wrap img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            display: block;
+        }
+
+        .hero-text { text-align: center; }
+
+        @media (min-width: 680px) { .hero-text { text-align: left; } }
+
+        .hero-eyebrow {
+            font-family: 'Barlow Condensed', sans-serif;
+            font-weight: 700;
+            font-size: 12px;
+            letter-spacing: 3px;
+            text-transform: uppercase;
+            color: rgba(255,255,255,0.55);
+            margin-bottom: 14px;
+        }
+
+        .hero-title {
+            font-family: 'Barlow Condensed', sans-serif;
+            font-weight: 900;
+            font-size: clamp(42px, 8vw, 64px);
+            line-height: 0.95;
+            text-transform: uppercase;
+            color: var(--white);
+            margin-bottom: 16px;
+        }
+
+        .hero-subtitle {
+            font-family: 'Barlow Condensed', sans-serif;
+            font-weight: 700;
+            font-size: 16px;
+            letter-spacing: 3px;
+            text-transform: uppercase;
+            color: rgba(255,255,255,0.5);
+            margin-bottom: 32px;
+        }
+
+        .hero-cta {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            background: var(--white);
+            color: var(--navy);
+            text-decoration: none;
+            font-weight: 700;
+            font-size: 14px;
+            letter-spacing: 0.5px;
+            padding: 13px 28px;
+            border-radius: 3px;
+            transition: background 0.2s, transform 0.15s;
+        }
+
+        .hero-cta:hover {
+            background: rgba(255,255,255,0.9);
+            transform: translateY(-1px);
+        }
+
+        /* Spotify green dot icon */
+        .hero-cta::before {
+            content: '';
+            display: inline-block;
+            width: 18px;
+            height: 18px;
+            background: #1DB954;
+            border-radius: 50%;
+            flex-shrink: 0;
+        }
+
+        /* ── ABOUT ─────────────────────────────────────────────── */
+        .about {
+            background: var(--navy);
+            padding: 72px 24px;
+        }
+
+        .about-inner {
+            max-width: 680px;
+            margin: 0 auto;
+            text-align: center;
+        }
+
+        .section-label {
+            font-family: 'Barlow Condensed', sans-serif;
+            font-weight: 700;
+            font-size: 11px;
+            letter-spacing: 3.5px;
+            text-transform: uppercase;
+            color: var(--blue);
+            margin-bottom: 24px;
+        }
+
+        .about p {
+            font-size: 17px;
+            line-height: 1.78;
+            color: rgba(255,255,255,0.78);
+        }
+
+        .hosts-row {
+            display: flex;
+            justify-content: center;
+            gap: 48px;
+            margin-top: 48px;
+            flex-wrap: wrap;
+        }
+
+        .host {
+            text-align: center;
+        }
+
+        .host-role {
+            display: block;
+            font-size: 11px;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            color: var(--muted);
+            margin-bottom: 6px;
+        }
+
+        .host a {
+            font-weight: 600;
+            font-size: 16px;
+            color: var(--white);
+            text-decoration: none;
+            border-bottom: 1px solid rgba(255,255,255,0.22);
+            padding-bottom: 2px;
+            transition: border-color 0.2s, color 0.2s;
+        }
+
+        .host a:hover {
+            color: rgba(255,255,255,0.8);
+            border-color: rgba(255,255,255,0.6);
+        }
+
+        /* ── EPISODES ─────────────────────────────────────────── */
+        .episodes-section {
+            padding: 72px 24px;
+            max-width: 780px;
+            margin: 0 auto;
+        }
+
+        .section-heading {
+            font-family: 'Barlow Condensed', sans-serif;
+            font-weight: 900;
+            font-size: 38px;
+            text-transform: uppercase;
+            color: var(--navy);
+            letter-spacing: 0.5px;
+            margin-bottom: 36px;
+        }
+
+        .episode-card {
+            background: var(--white);
+            border-radius: 6px;
+            overflow: hidden;
+            margin-bottom: 28px;
+            box-shadow: 0 2px 16px rgba(20,31,56,0.08);
+            border: 1px solid rgba(20,31,56,0.06);
+            transition: box-shadow 0.2s;
+        }
+
+        .episode-card:hover {
+            box-shadow: 0 6px 32px rgba(20,31,56,0.13);
+        }
+
+        .episode-top {
+            background: linear-gradient(90deg, var(--blue) 0%, var(--blue-dark) 100%);
+            padding: 14px 22px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .ep-number {
+            font-family: 'Barlow Condensed', sans-serif;
+            font-weight: 700;
+            font-size: 11px;
+            letter-spacing: 2.5px;
+            text-transform: uppercase;
+            color: rgba(255,255,255,0.55);
+        }
+
+        .ep-date {
+            font-size: 12px;
+            color: rgba(255,255,255,0.55);
+        }
+
+        .episode-body {
+            padding: 24px 22px 28px;
+        }
+
+        .ep-guest {
+            font-family: 'Barlow Condensed', sans-serif;
+            font-weight: 900;
+            font-size: 30px;
+            color: var(--navy);
+            line-height: 1;
+            margin-bottom: 5px;
+        }
+
+        .ep-role {
+            font-size: 13px;
+            color: var(--muted);
+            margin-bottom: 18px;
+        }
+
+        .ep-hook {
+            font-size: 15px;
+            line-height: 1.62;
+            color: #3a4f6a;
+            font-style: italic;
+            border-left: 3px solid var(--blue);
+            padding-left: 16px;
+            margin-bottom: 24px;
+        }
+
+        .ep-summary {
+            font-size: 14px;
+            line-height: 1.7;
+            color: #5a6d84;
+            margin-bottom: 24px;
+        }
+
+        /* Spotify embed iframe */
+        .spotify-embed {
+            border-radius: 12px;
+            width: 100%;
+            height: 152px;
+            border: none;
+            display: block;
+        }
+
+        /* Placeholder for episodes without embed yet */
+        .ep-listen-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            background: var(--navy);
+            color: var(--white);
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 13px;
+            padding: 11px 22px;
+            border-radius: 3px;
+            transition: background 0.2s;
+        }
+
+        .ep-listen-link:hover { background: var(--navy-mid); }
+
+        /* ── FOOTER ───────────────────────────────────────────── */
+        footer {
+            background: var(--navy);
+            padding: 52px 24px 40px;
+            text-align: center;
+            border-top: 1px solid rgba(255,255,255,0.07);
+        }
+
+        .footer-brand {
+            font-family: 'Barlow Condensed', sans-serif;
+            font-weight: 800;
+            font-size: 20px;
+            letter-spacing: 1px;
+            color: var(--white);
+            text-transform: uppercase;
+            margin-bottom: 8px;
+        }
+
+        .footer-sub {
+            font-size: 12px;
+            color: var(--muted);
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            margin-bottom: 32px;
+        }
+
+        .footer-links {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 0;
+            flex-wrap: wrap;
+            margin-bottom: 36px;
+        }
+
+        .footer-links a {
+            color: rgba(255,255,255,0.6);
+            text-decoration: none;
+            font-size: 14px;
+            font-weight: 500;
+            padding: 6px 20px;
+            transition: color 0.2s;
+        }
+
+        .footer-links a:hover { color: var(--white); }
+
+        .footer-sep {
+            color: rgba(255,255,255,0.18);
+            font-size: 14px;
+        }
+
+        .footer-credit {
+            font-size: 12px;
+            color: rgba(255,255,255,0.28);
+        }
+    </style>
+</head>
+<body>
+
+<!-- ── HERO ─────────────────────────────────────────────────────── -->
+<header class="hero">
+    <div class="hero-inner">
+        <div class="cover-wrap">
+            <img
+                src="cover-artwork-final-high-resolution-IGMIM25 Podcast Cover 1920x1920px.png"
+                alt="In gesprek met Ingrid &amp; Mike — Podcast Cover">
+        </div>
+        <div class="hero-text">
+            <p class="hero-eyebrow">Podcast &nbsp;|&nbsp; Instituut voor Psyche en Economie</p>
+            <h1 class="hero-title">In gesprek<br>met Ingrid<br>&amp; Mike</h1>
+            <p class="hero-subtitle">De aanstormende toekomst</p>
+            <a class="hero-cta" href="https://open.spotify.com/show/2tt1Vf232ZTWwzCG7GlekQ" target="_blank">
+                Luister op Spotify
+            </a>
+        </div>
+    </div>
+</header>
+
+<!-- ── OVER DE PODCAST ──────────────────────────────────────────── -->
+<section class="about">
+    <div class="about-inner">
+        <p class="section-label">Over de podcast</p>
+        <p>Ingrid Straet en Mike Lelieveld gaan in gesprek met de leiders van vandaag over de toekomst van morgen. Hoe kijken zij vooruit? Welke keuzes maken ze in tijden van onzekerheid en verandering? Ontdek in deze serie hoe visie, verbinding en lef organisaties richting geven. Inspirerend en prikkelend voor iedereen die zelf de regie wil pakken en vooruit wil in onze snel veranderende wereld.</p>
+        <div class="hosts-row">
+            <div class="host">
+                <span class="host-role">Host</span>
+                <a href="https://ivpe.nl" target="_blank">Ingrid Straet</a>
+            </div>
+            <div class="host">
+                <span class="host-role">Co-host</span>
+                <a href="https://mlelieveld.com" target="_blank">Mike Lelieveld</a>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- ── AFLEVERINGEN ──────────────────────────────────────────────── -->
+<section class="episodes-section">
+    <h2 class="section-heading">Afleveringen</h2>
+
+    <!-- Aflevering 1 – Bjorn Stolte -->
+    <article class="episode-card">
+        <div class="episode-top">
+            <span class="ep-number">Aflevering 01</span>
+            <span class="ep-date">7 april 2026</span>
+        </div>
+        <div class="episode-body">
+            <div class="ep-guest">Bjorn Stolte</div>
+            <div class="ep-role">CEO Handpicked &amp; Voorzitter Dutch Digital Agency</div>
+            <p class="ep-hook">"De advocaat wordt eerder vervangen dan de loodgieter."</p>
+            <p class="ep-summary">Bjorn Stolte denkt als voormalig grafisch ontwerper vanuit creativiteit over complexe vraagstukken. In dit gesprek gaat het over wat leiderschap vraagt als patronen verdwijnen en logica tekortschiet — over AI, continue transitie en waarom empathie juist waardevoller wordt in een chaotische wereld.</p>
+            <!--
+                SPOTIFY EMBED — show-player (toont alle afleveringen automatisch)
+                Wil je een losse aflevering embedden? Vervang 'show/2tt1Vf232ZTWwzCG7GlekQ'
+                door 'episode/EPISODE_ID' (te vinden in de Spotify URL van de aflevering).
+            -->
+            <iframe
+                class="spotify-embed"
+                style="height:232px"
+                src="https://open.spotify.com/embed/show/2tt1Vf232ZTWwzCG7GlekQ?utm_source=generator"
+                allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture"
+                loading="lazy">
+            </iframe>
+        </div>
+    </article>
+
+    <!--
+        Voeg hier nieuwe afleveringen toe door het bovenstaande blok te kopiëren
+        en de gegevens aan te passen.
+    -->
+
+</section>
+
+<!-- ── FOOTER ───────────────────────────────────────────────────── -->
+<footer>
+    <div class="footer-brand">In gesprek met Ingrid &amp; Mike</div>
+    <div class="footer-sub">De aanstormende toekomst</div>
+    <nav class="footer-links" aria-label="Luisterplatforms">
+        <a href="https://open.spotify.com/show/2tt1Vf232ZTWwzCG7GlekQ" target="_blank">Spotify</a>
+        <span class="footer-sep">|</span>
+        <a href="https://podcasts.apple.com" target="_blank">Apple Podcasts</a>
+        <span class="footer-sep">|</span>
+        <a href="https://podcast.ivpe.nl" target="_blank">Website</a>
+    </nav>
+    <p class="footer-credit">Een productie van het Instituut voor Psyche &amp; Economie</p>
+</footer>
+
+</body>
+</html>

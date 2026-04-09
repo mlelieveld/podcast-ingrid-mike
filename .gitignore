@@ -1,0 +1,26 @@
+# Firebase
+.firebase/
+firebase-debug.log
+.firebaserc.local
+
+# macOS
+.DS_Store
+.AppleDouble
+
+# Audio & grote mediabestanden
+*.mp3
+*.wav
+*.aiff
+*.m4a
+
+# Environment / secrets
+.env
+.env.*
+.envrc
+
+# Node
+node_modules/
+
+# Editors
+.vscode/
+*.swp

@@ -1,0 +1,27 @@
+{
+  "hosting": {
+    "public": ".",
+    "ignore": [
+      "firebase.json",
+      ".firebaserc",
+      ".gitignore",
+      "**/.*",
+      "**/node_modules/**",
+      "**/*.wav",
+      "**/*.mp3",
+      "**/*.docx",
+      "**/*.txt",
+      "transcribe.py",
+      "sources/**",
+      "aflevering 1 bjorn stolte/**",
+      "final episodes/**",
+      "AI-prompt*"
+    ],
+    "rewrites": [
+      {
+        "source": "**",
+        "destination": "/index.html"
+      }
+    ]
+  }
+}
